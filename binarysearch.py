@@ -1,10 +1,17 @@
+def search_iterative0(arr, x):
+    if x in arr:
+        return arr.index(x)
+    return None
+
 def search_iterative1(arr, x):
     index = 0
     for y in arr:
         if y == x:
-            return index
+            break
         index += 1
-    return -1;
+    else:
+        return None
+    return index;
     
 def search_iterative1_5(arr, x):
     for index in range(arr):
@@ -34,7 +41,7 @@ def binary_search_iterative(arr, x):
    
 def binary_search_recursive(arr, x):
     if len(arr) == 0:
-        return -1;
+        return None;
 
     midindex = len(arr) // 2
     if (arr[midindex] == x):
@@ -43,8 +50,8 @@ def binary_search_recursive(arr, x):
         return binary_search_recursive(arr[:midindex], x)
     else: #arr[midindex] < x:
         retindex = binary_search_recursive(arr[midindex + 1:], x)
-        if retindex == -1:
-            return -1
+        if retindex == None:
+            return None
         else:
             return midindex + 1 + retindex    
 
@@ -59,6 +66,8 @@ def binary_search_recursive2(arr, x, low, high):
         return binary_search_recursive2(arr, x, low, midindex - 1)
     else: #arr[midindex] < x:
         return binary_search_recursive2(arr, x, midindex + 1, high)
+
+
 
 
 #import timeit
