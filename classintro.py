@@ -7,7 +7,7 @@ print (x)
 
 class Apple:
     z = 13
-    def g():
+    def g(self):
         pass
 
     f()
@@ -17,7 +17,7 @@ class Apple:
 
 # Apple is called a class object
 print (Apple.z)
-Apple.g()
+#Apple.g()
 
 # For the class objects th following notation has a spesific meaning:
 # "Create a new instance object"
@@ -26,5 +26,6 @@ myapple2 = Apple()
 
 print (myapple1.z)
 
+myapple1.g() # by definition this call is trying do this => Apple.g(myapple1)
 
 

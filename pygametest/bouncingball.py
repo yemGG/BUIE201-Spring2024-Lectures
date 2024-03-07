@@ -9,7 +9,7 @@ random.seed()
 r = random.randint(2, 6)
 
 
-size = width, height = 320, 240
+size = width, height = 640, 240
 speed = [2, 2]
 black = 0, 0, 0
 
@@ -21,7 +21,13 @@ rct = ball.get_rect()
 
 while 1:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT: sys.exit()
+        if event.type == pygame.QUIT: 
+            sys.exit()
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_DOWN:
+                speed = [2, 1]
+            if event.key == pygame.K_UP:
+                speed = [2, 2]
 
     ballrect = ballrect.move(speed)
     if ballrect.left < 0 or ballrect.right > width:
