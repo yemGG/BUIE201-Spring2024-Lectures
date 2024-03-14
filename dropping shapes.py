@@ -8,17 +8,20 @@ class Game:
         pygame.init()
 
         # Set the window dimensions
-        self.width = 400
+        self._width = 400
         self._height = 400
-        self.window = pygame.display.set_mode((self.width, self._height))
+        self.window = pygame.display.set_mode((self._width, self._height))
 
-        self._WHITE = (255, 255, 255)       
+        self._white = (255, 255, 255)       
         self._shapes = []
 
         pygame.display.set_caption("Shapes Drop")
 
-    def IsyVisible(self, y):
+    def isyVisible(self, y):
         return y < self._height
+    
+    def generateRandomX(self):
+        return random.randint(0, game._width)  # Random x-coordinate
 
     def runGameLoop(self):
         while True:
@@ -27,7 +30,7 @@ class Game:
                     pygame.quit()
                     sys.exit()
 
-            self.window.fill(self._WHITE)  # Clear the window
+            self.window.fill(self._white)  # Clear the window
 
             # Generate new shape
             if random.random() < 0.1:  # Adjust this probability as needed
@@ -54,7 +57,7 @@ class Game:
 class Shape:
     def __init__(self, game):
         self._game = game
-        self._x = random.randint(0, game.width)  # Random x-coordinate
+        self._x = self._game.generateRandomX()
         self._y = 0  # Start from the top
         self._size = random.randint(10, 30)  # Random size
         self._color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))  # Random color
@@ -66,7 +69,7 @@ class Shape:
         self._y += 1  # Move downwards
 
     def isVisible(self):
-        return game.IsyVisible(self._y)
+        return game.isyVisible(self._y)
 
 class Circle(Shape):
     def draw(self):
